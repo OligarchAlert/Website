@@ -5,20 +5,26 @@
     "build:client": "bun run build.ts",
     "watch:client": "bun run build.ts --watch",
     "dev:server": "bun --hot run src/Backend/index.tsx",
-    "dev": "rm -rf public && bun run concurrently \"bun run watch:client\" \"bun run dev:server\""
+    "dev": "rm -rf public && bun run concurrently \"bun run watch:client\" \"bun run dev:server\" \"bun run watch:css\"",
+    "build:css": "postcss src/Frontend/static/styles.css -o dist/styles.css",
+    "watch:css": "postcss src/Frontend/static/styles.css -o dist/styles.css --watch"
   },
   "dependencies": {
     "@elysiajs/html": "^1.2.0",
     "@elysiajs/static": "^1.2.0",
     "@kitajs/ts-html-plugin": "^4.1.1",
     "@prisma/client": "^6.3.1",
+    "@tailwindcss/postcss": "^4.0.6",
     "concurrently": "^9.1.2",
     "elysia": "latest",
+    "postcss": "^8.5.2",
     "preact": "^10.26.0",
-    "preact-render-to-string": "^6.5.13"
+    "preact-render-to-string": "^6.5.13",
+    "tailwindcss": "^4.0.6"
   },
   "devDependencies": {
     "bun-types": "latest",
+    "postcss-cli": "^11.0.0",
     "prisma": "^6.3.1"
   },
   "module": "src/index.js"
