@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.50",
+  "scripts": {
+    "build:client": "bun run build.ts",
+    "watch:client": "bun run build.ts --watch",
+    "dev:server": "bun --hot run src/Backend/index.tsx",
+    "dev": "rm -rf public && bun run concurrently \"bun run watch:client\" \"bun run dev:server\""
+  },
+  "dependencies": {
+    "@elysiajs/html": "^1.2.0",
+    "@elysiajs/static": "^1.2.0",
+    "@kitajs/ts-html-plugin": "^4.1.1",
+    "concurrently": "^9.1.2",
+    "elysia": "latest",
+    "preact": "^10.26.0",
+    "preact-render-to-string": "^6.5.13"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "module": "src/index.js"
+}
