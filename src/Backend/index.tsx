@@ -7,9 +7,12 @@ import staticPlugin from "@elysiajs/static";
 
 // Read the build metadata at startup
 let clientBundle = 'client.js'; // default fallback
+let stylesBundle = 'styles.css';
 try {
   const meta = JSON.parse(await Bun.file('./dist/build-meta.json').text());
+  console.log('meta', meta);
   clientBundle = meta.client;
+  stylesBundle = meta['styles.css'];
   console.log('Using client bundle:', clientBundle);
 } catch (e) {
   console.warn('No build-meta.json found, using default client.js');
@@ -30,8 +33,13 @@ const app = new Elysia()
     // }
 
     // const RouteComponent = route.component;
+    console.log('clientBundle', clientBundle);
+    console.log('stylesBundle', stylesBundle);
     const renderedContent = renderToString(
-      <Document title={params.path ?? 'Home'} clientBundle={clientBundle}>
+      <Document
+        title={params.path ?? 'Home'}
+        clientBundle={clientBundle}
+        stylesBundle={stylesBundle}>
         <Home />
       </Document>
     );

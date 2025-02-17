@@ -5,7 +5,7 @@
     "build:client": "bun run build.ts",
     "watch:client": "bun run build.ts --watch",
     "dev:server": "bun --hot run src/Backend/index.tsx",
-    "dev": "rm -rf public && bun run concurrently \"bun run watch:client\" \"bun run dev:server\" \"bun run watch:css\"",
+    "dev": "rm -rf dist && bun run concurrently \"bun run watch:client\" \"bun run dev:server\" \"bun run watch:css\"",
     "build:css": "postcss src/Frontend/static/styles.css -o dist/styles.css",
     "watch:css": "postcss src/Frontend/static/styles.css -o dist/styles.css --watch"
   },
@@ -18,6 +18,7 @@
     "concurrently": "^9.1.2",
     "elysia": "latest",
     "postcss": "^8.5.2",
+    "postcss-hash": "^3.0.0",
     "preact": "^10.26.0",
     "preact-render-to-string": "^6.5.13",
     "tailwindcss": "^4.0.6"

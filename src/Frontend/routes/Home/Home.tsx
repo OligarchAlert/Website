@@ -8,9 +8,9 @@ export default function Home() {
         <main>
             <button onClick={() => setCount(count + 1)}>Click me {count}</button>
             <article>
-                <h1>Welcome Homee!</h1>
+                <h1 className="text-3xl text-red-500">Welcome Homee!</h1>
                 <section>
-                    <p>This is the main content section</p>
+                    <p className="text-xl text-blue-500">This is the main content section</p>
                     <ul>
                         <li>Item 111</li>
                         <li>Item 2</li>
