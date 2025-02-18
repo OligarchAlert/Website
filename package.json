@@ -4,7 +4,7 @@
   "scripts": {
     "build:client": "bun run build.ts",
     "watch:client": "bun run build.ts --watch",
-    "dev:server": "bun --hot run src/Backend/index.tsx",
+    "dev:server": "bun --hot run src/Server/index.tsx",
     "dev": "rm -rf dist && bun run concurrently \"bun run watch:client\" \"bun run dev:server\" \"bun run watch:css\"",
     "build:css": "postcss src/Layout/static/styles.css -o dist/styles.css",
     "watch:css": "postcss src/Layout/static/styles.css -o dist/styles.css --watch"

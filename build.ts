@@ -55,7 +55,7 @@ if (isWatch) {
     // Skip build.ts itself, server files, and the public directory
     if (
       filename === 'build.ts' ||
-      filename.startsWith('src/Backend/') ||
+      filename.startsWith('src/Server/') ||
       filename.startsWith('dist/') ||
       !filename.match(/\.(tsx|ts|jsx|js)$/)
     ) return;
