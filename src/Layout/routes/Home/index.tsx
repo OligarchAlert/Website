@@ -1,4 +1,4 @@
-import { type Case } from "@prisma/client";
+import { PrismaClient, type Case } from "@prisma/client";
 
 export default function Home({ cases }: { cases: Case[] }) {
     return (
@@ -11,4 +11,13 @@ export default function Home({ cases }: { cases: Case[] }) {
             ))}
         </main>
     );
+}
+
+export async function getStaticProps({ prisma }: { prisma: PrismaClient }) {
+    const cases = await prisma.case.findMany();
+    return {
+        props: {
+            cases
+        }
+    }
 }

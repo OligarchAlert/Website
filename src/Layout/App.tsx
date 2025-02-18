@@ -1,5 +1,5 @@
 import { hydrate } from "preact";
-import Home from "./routes/Home/Home";
+import Home from "./routes/Home";
 import Layout from "./components/Layout/Layout";
 
 // Get the initial state that was injected by the server
