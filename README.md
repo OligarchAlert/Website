@@ -2,7 +2,7 @@
 
 Built with [Elysia](https://elysiajs.com/)
 
-Utilizing [Court Listener](https://www.courtlistener.com/help/api/rest/v3)
+Utilizing [Court Listener](https://www.courtlistener.com/help/api/rest/v4)
 
 ## Development
 To start the development server run:
