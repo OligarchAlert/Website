@@ -7,7 +7,7 @@ async function build() {
   try {
     // First build with a temporary name
     const buildResult = await Bun.build({
-      entrypoints: ['./src/Frontend/App.tsx'],
+      entrypoints: ['./src/Layout/App.tsx'],
       outdir: './dist',
       naming: {
         entry: 'client.temp.js'

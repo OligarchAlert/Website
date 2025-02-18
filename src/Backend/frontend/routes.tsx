@@ -1,8 +1,8 @@
 import renderToString from "preact-render-to-string";
-import Home from "../../Frontend/routes/Home/Home";
+import Home from "../../Layout/routes/Home/Home";
 import Elysia from "elysia";
 import { getBundleData } from "./bundler";
-import Document from "../../Frontend/Document";
+import Document from "../../Layout/Document";
 
 export function ConfigureRoutes(app: Elysia) {
     app.get('/:path?', ({ params }) => {
