@@ -8,11 +8,11 @@ export default function Home() {
         <main>
             <button onClick={() => setCount(count + 1)}>Click me {count}</button>
             <article>
-                <h1 className="text-3xl text-red-500">Welcome Homee!</h1>
+                <h1 className="text-3xl text-red-500">Welcome Home!</h1>
                 <section>
-                    <p className="text-xl text-blue-500">This is the main content section</p>
+                    <p className=" text-blue-500">This is the main content section</p>
                     <ul>
-                        <li>Item 111</li>
+                        <li>Item 1</li>
                         <li>Item 2</li>
                         <li>Item 3</li>
                     </ul>

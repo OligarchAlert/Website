@@ -1,17 +1,16 @@
 import { watch } from 'fs';
+import { createHash } from 'crypto';
 
 const isWatch = process.argv.includes('--watch');
 
 async function build() {
-  const timestamp = Date.now();
-  const filename = `client.${timestamp}.js`;
-
   try {
-    await Bun.build({
+    // First build with a temporary name
+    const buildResult = await Bun.build({
       entrypoints: ['./src/Frontend/App.tsx'],
       outdir: './dist',
       naming: {
-        entry: filename
+        entry: 'client.temp.js'
       },
       minify: true,
       target: 'browser',
@@ -21,9 +20,23 @@ async function build() {
       }
     });
 
+    // Read the output file and generate hash
+    const outputContent = await Bun.file('./dist/client.temp.js').text();
+    const hash = createHash('sha256')
+      .update(outputContent)
+      .digest('hex')
+      .slice(0, 10);
+    
+    const filename = `client.${hash}.js`;
+
+    // Rename the file with the hash
+    await Bun.write(`./dist/${filename}`, outputContent);
     await Bun.write('./dist/build-meta.json', JSON.stringify({ 
       client: filename 
     }));
+
+    // Clean up temp file
+    await Bun.write('./dist/client.temp.js', '');
 
     console.log(`Built ${filename}`);
   } catch (error) {

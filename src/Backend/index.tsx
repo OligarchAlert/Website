@@ -1,6 +1,7 @@
 import { Elysia } from "elysia";
 import { html } from '@elysiajs/html'
 import { renderToString } from "preact-render-to-string";
+import { watch } from 'fs';
 import Document from "../Frontend/Document";
 import Home from "../Frontend/routes/Home/Home";
 import staticPlugin from "@elysiajs/static";
@@ -8,15 +9,27 @@ import staticPlugin from "@elysiajs/static";
 // Read the build metadata at startup
 let clientBundle = 'client.js'; // default fallback
 let stylesBundle = 'styles.css';
-try {
-  const meta = JSON.parse(await Bun.file('./dist/build-meta.json').text());
-  console.log('meta', meta);
-  clientBundle = meta.client;
-  stylesBundle = meta['styles.css'];
-  console.log('Using client bundle:', clientBundle);
-} catch (e) {
-  console.warn('No build-meta.json found, using default client.js');
+
+async function updateBundles() {
+  try {
+    const meta = JSON.parse(await Bun.file('./dist/build-meta.json').text());
+    clientBundle = meta.client;
+    stylesBundle = meta['styles.css'];
+  } catch (e) {
+    console.warn('No build-meta.json found, using default bundles');
+  }
 }
+
+// Initial load
+await updateBundles();
+
+// Watch for changes to build-meta.json
+watch('./dist/build-meta.json', async (eventType, filename) => {
+  if (eventType === 'change') {
+    console.log('Build meta changed, updating bundles...');
+    await updateBundles();
+  }
+});
 
 const app = new Elysia()
   .use(html())
@@ -33,8 +46,6 @@ const app = new Elysia()
     // }
 
     // const RouteComponent = route.component;
-    console.log('clientBundle', clientBundle);
-    console.log('stylesBundle', stylesBundle);
     const renderedContent = renderToString(
       <Document
         title={params.path ?? 'Home'}
