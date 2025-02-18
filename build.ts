@@ -32,7 +32,7 @@ async function build() {
     // Rename the file with the hash
     await Bun.write(`./dist/${filename}`, outputContent);
     await Bun.write('./dist/build-meta.json', JSON.stringify({ 
-      client: filename 
+      'client.js': filename 
     }));
 
     // Clean up temp file
