@@ -1,10 +1,8 @@
-# Elysia with Bun runtime
+# OligarchAlert
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+Built with [Elysia](https://elysiajs.com/)
+
+Utilizing [Court Listener](https://www.courtlistener.com/help/api/rest/v3)
 
 ## Development
 To start the development server run:
