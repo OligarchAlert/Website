@@ -2,6 +2,23 @@ import { hydrate } from "preact";
 import Home from "./routes/Home/Home";
 import Layout from "./components/Layout/Layout";
 
+// Get the initial state that was injected by the server
+declare global {
+  interface Window {
+    __INITIAL_STATE__: {
+      cases: Array<{
+        id: number;
+        title: string;
+        content: string;
+        slug: string;
+        published: boolean;
+      }>;
+    };
+  }
+}
+
+const initialState = window.__INITIAL_STATE__;
+
 // Client-side router
 // const routes = {
 //   '/': Home,
@@ -13,7 +30,7 @@ const path = window.location.pathname;
 
 const app = (
   <Layout>
-    <Home />
+    <Home cases={initialState.cases} />
   </Layout>
 );
 

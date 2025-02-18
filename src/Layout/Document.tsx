@@ -1,14 +1,15 @@
 import { ComponentChildren } from "preact";
 import Layout from "./components/Layout/Layout";
 
-type DocumentProps = {
-    children: ComponentChildren;
+interface DocumentProps {
     title: string;
     clientBundle: string;
     stylesBundle: string;
-};
+    children: ComponentChildren;
+    initialState?: any;
+}
 
-export default function Document({ children, title, clientBundle, stylesBundle }: DocumentProps) {
+export default function Document({ title, clientBundle, stylesBundle, children, initialState }: DocumentProps) {
     return (
         <html lang="en">
             <head>
@@ -23,6 +24,7 @@ export default function Document({ children, title, clientBundle, stylesBundle }
                         {children}
                     </Layout>
                 </div>
+                <script dangerouslySetInnerHTML={{ __html: `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};` }} />
                 <script src={`/static/${clientBundle}`}></script>
             </body>
         </html>

@@ -2,7 +2,7 @@ import html from "@elysiajs/html";
 import staticPlugin from "@elysiajs/static";
 import Elysia from "elysia";
 import { StartBundler } from "./bundler";
-import { ConfigureRoutes } from "./routes";
+import { ConfigureRoutes } from "./routes/routes";
 
 export function ConfigureFrontend(app: Elysia) {
 

@@ -1,8 +1,8 @@
 import renderToString from "preact-render-to-string";
-import Home from "../../Layout/routes/Home/Home";
+import Home from "../../../Layout/routes/Home/Home";
 import Elysia from "elysia";
-import { getBundleData } from "./bundler";
-import Document from "../../Layout/Document";
+import { getBundleData } from "../bundler";
+import Document from "../../../Layout/Document";
 
 export function ConfigureRoutes(app: Elysia) {
     app.get('/:path?', ({ params }) => {
@@ -16,12 +16,27 @@ export function ConfigureRoutes(app: Elysia) {
         // }
 
         // const RouteComponent = route.component;
+        const cases = [{
+            id: 1,
+            title: 'Test Case',
+            content: 'Test Content',
+            slug: 'test-case',
+            published: true
+        }, {
+            id: 2,
+            title: 'Test Case 2',
+            content: 'Test Content 2',
+            slug: 'test-case-2',
+            published: true
+        }];
+
         const renderedContent = renderToString(
             <Document
                 title={params.path ?? 'Home'}
                 clientBundle={clientBundle}
-                stylesBundle={stylesBundle}>    
-                <Home />
+                stylesBundle={stylesBundle}
+                initialState={{ cases }}>
+                <Home cases={cases} />
             </Document>
         );
 

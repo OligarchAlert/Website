@@ -17,9 +17,9 @@ model Case {
 }
 
 model CaseDocument {
-  id        Int     @id
-  title     String
-  dateFiled DateTime
+  id          Int      @id
+  title       String
+  dateFiled   DateTime
   description String
 
   caseId Int
