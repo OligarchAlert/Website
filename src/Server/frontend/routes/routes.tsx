@@ -16,28 +16,6 @@ export function ConfigureRoutes(app: Elysia) {
     app.get('/:path?', async ({ params }) => {
         const { clientBundle, stylesBundle } = getBundleData();
 
-        // const path = params.path ? `/${params.path}` : '/';
-        // const route = routes[path as keyof typeof routes];
-
-        // if (!route) {
-        //   return new Response('404 Not Found', { status: 404 });
-        // }
-
-        // const RouteComponent = route.component;
-        const cases = [{
-            id: 1,
-            title: 'Test Case',
-            content: 'Test Content',
-            slug: 'test-case',
-            published: true
-        }, {
-            id: 2,
-            title: 'Test Case 2',
-            content: 'Test Content 2',
-            slug: 'test-case-2',
-            published: true
-        }];
-
         const route = routes[(params.path ?? 'home') as keyof typeof routes];
 
         if (!route) {
